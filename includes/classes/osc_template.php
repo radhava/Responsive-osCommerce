@@ -5,18 +5,19 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2014 osCommerce
+  Copyright (c) 2019 osCommerce
 
   Released under the GNU General Public License
 */
 
   class oscTemplate {
+
     var $_title;
     var $_blocks = array();
     var $_content = array();
     var $_grid_container_width = 12;
     var $_grid_content_width = BOOTSTRAP_CONTENT;
-    var $_grid_column_width = 0; // deprecated
+    var $_grid_column_width = 0;
     var $_data = array();
 
     function __construct() {
@@ -170,5 +171,10 @@
 
       return $result;
     }
+
+    public function map_to_template($file) {
+      return dirname($file) . '/templates/tpl_' . basename($file);
+    }
+
   }
-?>
+  

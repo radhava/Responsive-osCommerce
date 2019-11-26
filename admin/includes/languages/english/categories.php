@@ -14,12 +14,18 @@ define('HEADING_TITLE', 'Categories / Products');
 define('HEADING_TITLE_SEARCH', 'Search:');
 define('HEADING_TITLE_GOTO', 'Go To:');
 
+define('SECTION_HEADING_GENERAL', 'Language specific');
+define('SECTION_HEADING_DATA', 'Product specific');
+define('SECTION_HEADING_IMAGES', 'Product Images');
+
 define('TABLE_HEADING_ID', 'ID');
 define('TABLE_HEADING_CATEGORIES_PRODUCTS', 'Categories / Products');
 define('TABLE_HEADING_ACTION', 'Action');
 define('TABLE_HEADING_STATUS', 'Status');
 
-define('TEXT_NEW_PRODUCT', 'New Product in &quot;%s&quot;');
+define('TEXT_NEW_PRODUCT', 'Adding Product in &quot;%s&quot;');
+define('TEXT_EXISTING_PRODUCT', 'Editing Product in &quot;%s&quot;');
+
 define('TEXT_CATEGORIES', 'Categories:');
 define('TEXT_SUBCATEGORIES', 'Subcategories:');
 define('TEXT_PRODUCTS', 'Products:');
@@ -85,7 +91,7 @@ define('TEXT_PRODUCTS_ADD_LARGE_IMAGE', 'Add Large Image');
 define('TEXT_PRODUCTS_LARGE_IMAGE_DELETE_TITLE', 'Delete Large Product Image?');
 define('TEXT_PRODUCTS_LARGE_IMAGE_CONFIRM_DELETE', 'Please confirm the removal of the large product image.');
 define('TEXT_PRODUCTS_URL', 'Products URL:');
-define('TEXT_PRODUCTS_URL_WITHOUT_HTTP', '<small>(without http://)</small>');
+define('TEXT_PRODUCTS_URL_WITHOUT_HTTP', '<small>( include http:// or https:// )</small>');
 define('TEXT_PRODUCTS_PRICE_NET', 'Products Price (Net):');
 define('TEXT_PRODUCTS_PRICE_GROSS', 'Products Price (Gross):');
 define('TEXT_PRODUCTS_WEIGHT', 'Products Weight:');

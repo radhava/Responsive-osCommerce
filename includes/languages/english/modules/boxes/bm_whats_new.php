@@ -5,12 +5,12 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2010 osCommerce
+  Copyright (c) 2018 osCommerce
 
   Released under the GNU General Public License
 */
 
   define('MODULE_BOXES_WHATS_NEW_TITLE', 'What\'s New');
   define('MODULE_BOXES_WHATS_NEW_DESCRIPTION', 'Show the newest products');
-  define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', 'What\'s New?');
-?>
+  
+  define('MODULE_BOXES_WHATS_NEW_BOX_TITLE', '<a href="%s">What\'s New?</a>');

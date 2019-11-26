@@ -12,8 +12,6 @@
 
   require('includes/application_top.php');
 
-  $OSCOM_Hooks->register('orders');
-
   require('includes/classes/currencies.php');
   $currencies = new currencies();
 
@@ -215,7 +213,7 @@ if ( typeof jQuery.ui == 'undefined' ) {
       <tr>
         <td width="33%" valign="top">
           <fieldset style="border: 0; height: 100%;">
-            <legend style="margin-left: -20px; font-weight: bold;"><?php echo ENTRY_CUSTOMER; ?></legend>
+            <legend><?php echo ENTRY_CUSTOMER; ?></legend>
 
             <p><?php echo tep_address_format($order->customer['format_id'], $order->customer, 1, '', '<br />'); ?></p>
             <p><?php echo $order->customer['telephone'] . '<br />' . '<a href="mailto:' . $order->customer['email_address'] . '"><u>' . $order->customer['email_address'] . '</u></a>'; ?></p>
@@ -223,14 +221,14 @@ if ( typeof jQuery.ui == 'undefined' ) {
         </td>
         <td width="33%" valign="top">
           <fieldset style="border: 0; height: 100%;">
-            <legend style="margin-left: -20px; font-weight: bold;"><?php echo ENTRY_SHIPPING_ADDRESS; ?></legend>
+            <legend><?php echo ENTRY_SHIPPING_ADDRESS; ?></legend>
 
             <p><?php echo tep_address_format($order->delivery['format_id'], $order->delivery, 1, '', '<br />'); ?></p>
           </fieldset>
         </td>
         <td width="33%" valign="top">
           <fieldset style="border: 0; height: 100%;">
-            <legend style="margin-left: -20px; font-weight: bold;"><?php echo ENTRY_BILLING_ADDRESS; ?></legend>
+            <legend><?php echo ENTRY_BILLING_ADDRESS; ?></legend>
 
             <p><?php echo tep_address_format($order->billing['format_id'], $order->billing, 1, '', '<br />'); ?></p>
           </fieldset>
@@ -239,7 +237,7 @@ if ( typeof jQuery.ui == 'undefined' ) {
       <tr>
         <td width="33%" valign="top">
           <fieldset style="border: 0; height: 100%;">
-            <legend style="margin-left: -20px; font-weight: bold;"><?php echo ENTRY_PAYMENT_METHOD; ?></legend>
+            <legend><?php echo ENTRY_PAYMENT_METHOD; ?></legend>
 
             <p><?php echo $order->info['payment_method']; ?></p>
 
@@ -273,14 +271,14 @@ if ( typeof jQuery.ui == 'undefined' ) {
         </td>
         <td width="33%" valign="top">
           <fieldset style="border: 0; height: 100%;">
-            <legend style="margin-left: -20px; font-weight: bold;"><?php echo ENTRY_STATUS; ?></legend>
+            <legend><?php echo ENTRY_STATUS; ?></legend>
 
             <p><?php echo $order->info['status'] . '<br />' . (empty($order->info['last_modified']) ? tep_datetime_short($order->info['date_purchased']) : tep_datetime_short($order->info['last_modified'])); ?></p>
           </fieldset>
         </td>
         <td width="33%" valign="top">
           <fieldset style="border: 0; height: 100%;">
-            <legend style="margin-left: -20px; font-weight: bold;"><?php echo ENTRY_TOTAL; ?></legend>
+            <legend><?php echo ENTRY_TOTAL; ?></legend>
 
             <p><?php echo $order->info['total']; ?></p>
           </fieldset>
@@ -498,7 +496,7 @@ $(function() {
       $heading[] = array('text' => '<strong>' . TEXT_INFO_HEADING_DELETE_ORDER . '</strong>');
 
       $contents = array('form' => tep_draw_form('orders', 'orders.php', tep_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id . '&action=deleteconfirm'));
-      $contents[] = array('text' => TEXT_INFO_DELETE_INTRO . '<br /><br /><strong>' . $cInfo->customers_firstname . ' ' . $cInfo->customers_lastname . '</strong>');
+      $contents[] = array('text' => TEXT_INFO_DELETE_INTRO . '<br /><br /><strong>' . $oInfo->customers_firstname . ' ' . $oInfo->customers_lastname . '</strong>');
       $contents[] = array('text' => '<br />' . tep_draw_checkbox_field('restock') . ' ' . TEXT_INFO_RESTOCK_PRODUCT_QUANTITY);
       $contents[] = array('align' => 'center', 'text' => '<br />' . tep_draw_button(IMAGE_DELETE, 'trash', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link('orders.php', tep_get_all_get_params(array('oID', 'action')) . 'oID=' . $oInfo->orders_id)));
       break;

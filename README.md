@@ -1,76 +1,79 @@
-osCommerce Community Edition
-============================
+# CE Phoenix
 
-osCommerce 2.3.4 with Bootstrap.  This is an ongoing COMMUNITY effort.  
+CE Phoenix is a powerful ecommerce shop ready to use out of the box, putting you online and in full control of your business right from the start.
 
-You can choose to download;
+Your customers will love the modern, responsive design that will not only make your website look great on all mobile viewing devices but also perform at speed whilst giving you the power to create an individual and unique look to your shop with just a few clicks!
 
-GOLD: https://github.com/gburton/Responsive-osCommerce/archive/v2.3.4-GOLD.zip
-EDGE: https://github.com/gburton/Responsive-osCommerce/archive/master.zip
+CE Phoenix is packed with many first class utilities as standard but its modular software design lets you add many more with no programming skills required. The full suite of product, shipping and payment options included will let you sell thousands of products in any number of categories worldwide in any currency or language providing a seamless customer experience.
 
-Help to move the Project forward
-================================
+![Phoenix Logo](https://raw.githubusercontent.com/gburton/Responsive-osCommerce/master/.github/ce-phoenix.png)
 
-I need your help to move this Project forward.  At the moment, this project is done on my own, as and when time can be given.  
-To allow me to give more time to this Project, I need your support;
+CE Phoenix is the official Community Version of osCommerce.  Check out what you can do with CE Phoenix at the demo site; 
 
-- give time for testing new code and/or getting involved in discussions
-- give code to the project - create a github account, fork and start coding
+# Demo Site
 
-If you cannot give time or code, please give a Pledgie.  Simply click on the Donate button below to donate via Paypal...
+https://template.me.uk/phoenix/index.php
 
-<a href='https://pledgie.com/campaigns/31724'><img alt='Click here to lend your support to: Responsive osCommerce and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/31724.png?skin_name=chrome' border='0' ></a>
+## External Libraries
 
-Minimum PHP Version
-===================
+https://github.com/gburton/Responsive-osCommerce/wiki/External-Libraries
 
-5.3
+### PHP Version
 
-If you are on an older PHP version, you may find errors.  Update your PHP version.
+Minimum | Maximum
+------------ | -------------
+7.0 | 7.3
 
-Looking for Loaded?
-===================
+### User Checklist
 
-This will never become a "loaded" osCommerce.  So if you are looking for something with a lot of addons pre-installed, this is not for you.  
-We are striving to make the front end 100% modular, so good add-on makers can create modules which are simple to (un)install, changing no core code.
+- [x] read this README document
+- [ ] download Phoenix & perform installation
+- [ ] check security page in administrative area.  admin > tools > security checks
+- [ ] join osCommerce forum
+- [ ] consider joining Phoenix club
+- [ ] install one or more navbar modules;  admin > modules > navbar modules > {install}
+- [ ] install one or more footer modules;  admin > modules > content > {install}
+- [ ] install one or more box modules;  admin > modules > boxes > {install}
+- [ ] install shipping module(s);  admin > modules > shipping
+- [ ] install payment module(s);  admin > modules > payment
+- [ ] perform a test checkout
+- [ ] load your categories and products
 
+### Image Credits
 
+Images in the default installation are copyright their respective owners;
 
-Demo Site
-=========
+Image | Owner | Usage
+------------ | ------------- | -------------
+osCommerce Logo | osCommerce | https://www.oscommerce.com/Us&Legal#legalTabContentTrademark
+Phoenix Logo | G Burton | Phoenix Logo may not be used without prior written permission from the copyright owner.
+Oranges | Eelffica from Pixabay | https://pixabay.com/service/license/
+Lemons | Eelffica from Pixabay | https://pixabay.com/service/license/
+Pears | Eelffica from Pixabay | https://pixabay.com/service/license/
+Apples | Eelffica from Pixabay | https://pixabay.com/service/license/
+Tomatoes | Rocky_H from Pixabay | https://pixabay.com/service/license/
+Heart | Gerhard Gellinger from Pixabay | https://pixabay.com/service/license/
 
-Check out the demo site at http://template.me.uk/2334bs3/ - please note that this might be slightly behind "Edge", or might have modules that are about to be added to "Edge".  More or less, this is how Responsive osCommerce looks out of the box.
+### Thank You
 
+To all shopowners, developers, consultants and business owners who have supported the project over the years.
 
-Installation
-============
+### Support the Project
 
-Install as if this is a new osCommerce installation.
-You can now play with the Modular aspect we've introduced.
+If you or your employer is commercially dependent on Phoenix (or a previous incarnation), please help to sponsor continual forward movement in the code-base. Phoenix needs you as much as you need Phoenix!
 
-Admin > Modules > Header Tags > {install}
-Admin > Modules > Boxes > {install}
-Admin > Modules > Content > {install}
-Admin > Modules > Navbar Modules > {install} 
+I am hopeful that all shopowners, developers, consultants and businesses ... will join the Phoenix Club to allow two professional developers to work on the code on an ad-hoc basis.  
 
-All of these can be sorted using the sort order, lowest is displayed first.
+### Join the Phoenix Club
 
-Database Conversion Script
-==========================
+If you wish to help steer the future direction of the software please join the Phoenix Club
+https://forums.oscommerce.com/clubs/1-phoenix/
 
-To go from an older osCommerce to this one, this Script might help:
-http://forums.oscommerce.com/topic/399678-234normal-to-234responsive-database-conversion-script/
+### Other Languages
 
-Got Questions, Comments or Concerns
-===================================
-
-http://forums.oscommerce.com/topic/396152-bootstrap-3-in-234-responsive-from-the-get-go/
-
-How to keep a clean Master copy using Github
-============================================
-
-I have put together a couple of videos.
-1.  how to create a new Github account and Fork this project.
-2.  how to check for new commits to this project and pull them into your own Fork.
-
-You can find these videos at http://forums.oscommerce.com/topic/396152-bootstrap-3-in-2334-responsive-from-the-get-go/?p=1709648
+Language | URL | Credit & Thanks
+------------ | ------------- | -------------
+German | https://github.com/cupidare/OsCommerce-CE-Phoenix-German-language-Deutsches-Sprachpaket | @cupidare
+Spanish | https://github.com/raiwa/OSCOM-CE-Phoenix-Spanish-language-idioma-espanol | @raiwa
+Russian | https://github.com/Agrosheriff/CE-Phoenix-1.0.0.4_RU | @Fredi
+Dutch | https://github.com/Denkster/OSCOM-CE-Phoenix_Dutch_language_Nederlandse_taal | @Denkster

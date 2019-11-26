@@ -5,12 +5,14 @@
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2010 osCommerce
+  Copyright (c) 2018 osCommerce
 
   Released under the GNU General Public License
 */
 
   require('includes/application_top.php');
+  
+  $OSCOM_Hooks->register('progress');
 
 // if the customer is not logged on, redirect them to the login page
   if (!tep_session_is_registered('customer_id')) {
@@ -90,9 +92,7 @@
   require('includes/template_top.php');
 ?>
 
-<div class="page-header">
-  <h1><?php echo HEADING_TITLE; ?></h1>
-</div>
+<h1 class="display-4"><?php echo HEADING_TITLE; ?></h1>
 
 <?php
   if ($messageStack->size('checkout_confirmation') > 0) {
@@ -109,162 +109,129 @@
 ?>
 
 <div class="contentContainer">
-  <div class="contentText">
-
-    <div class="panel panel-default">
-      <div class="panel-heading"><?php echo '<strong>' . HEADING_PRODUCTS . '</strong>' . tep_draw_button(TEXT_EDIT, 'fa fa-edit', tep_href_link('shopping_cart.php'), NULL, NULL, 'pull-right btn-info btn-xs' ); ?></div>
-      <div class="panel-body">
-    <table width="100%" class="table-hover order_confirmation">
-     <tbody>
-
-<?php
-  for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
-    echo '          <tr>' . "\n" .
-         '            <td align="right" valign="top" width="30">' . $order->products[$i]['qty'] . '&nbsp;x&nbsp;</td>' . "\n" .
-         '            <td valign="top">' . $order->products[$i]['name'];
-
-    if (STOCK_CHECK == 'true') {
-      echo tep_check_stock($order->products[$i]['id'], $order->products[$i]['qty']);
-    }
-
-    if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
-      for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
-        echo '<br /><nobr><small>&nbsp;<i> - ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . $order->products[$i]['attributes'][$j]['value'] . '</i></small></nobr>';
-      }
-    }
-
-    echo '</td>' . "\n";
-
-    if (sizeof($order->info['tax_groups']) > 1) echo '            <td valign="top" align="right">' . tep_display_tax_value($order->products[$i]['tax']) . '%</td>' . "\n";
-
-    echo '            <td align="right" valign="top">' . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . '</td>' . "\n" .
-         '          </tr>' . "\n";
-  }
-?>
-
-
-        </tbody>
-      </table>
-      <hr>
-      <table width="100%" class="pull-right">
-
-<?php
-  if (MODULE_ORDER_TOTAL_INSTALLED) {
-    echo $order_total_modules->output();
-  }
-?>
-
-        </table>
-            </div>
-    </div>
-
-
-
-  </div>
-
-  <div class="clearfix"></div>
-
   <div class="row">
-    <?php
-    if ($sendto != false) {
-      ?>
-      <div class="col-sm-4">
-        <div class="panel panel-info">
-          <div class="panel-heading"><?php echo '<strong>' . HEADING_DELIVERY_ADDRESS . '</strong>' . tep_draw_button(TEXT_EDIT, 'fa fa-edit', tep_href_link('checkout_shipping_address.php', '', 'SSL'), NULL, NULL, 'pull-right btn-info btn-xs' ); ?></div>
-          <div class="panel-body">
-            <?php echo tep_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br />'); ?>
-          </div>
-        </div>
-      </div>
-      <?php
-    }
-    ?>
-    <div class="col-sm-4">
-      <div class="panel panel-warning">
-        <div class="panel-heading"><?php echo '<strong>' . HEADING_BILLING_ADDRESS . '</strong>' . tep_draw_button(TEXT_EDIT, 'fa fa-edit', tep_href_link('checkout_payment_address.php', '', 'SSL'), NULL, NULL, 'pull-right btn-info btn-xs' ); ?></div>
-        <div class="panel-body">
-          <?php echo tep_address_format($order->billing['format_id'], $order->billing, 1, ' ', '<br />'); ?>
-        </div>
+    <div class="col-sm-7">
+      <h5 class="mb-1"><?php echo LIST_PRODUCTS; ?><small><a class="font-weight-lighter ml-2" href="<?php echo tep_href_link('shopping_cart.php', '', 'SSL'); ?>"><?php echo TEXT_EDIT; ?></a></small>
+      </h5>
+      <div class="border">
+        <ul class="list-group list-group-flush">
+          <?php
+          for ($i=0, $n=sizeof($order->products); $i<$n; $i++) {
+            echo '<li class="list-group-item">';
+              echo '<span class="float-right">' . $currencies->display_price($order->products[$i]['final_price'], $order->products[$i]['tax'], $order->products[$i]['qty']) . '</span>';
+              echo '<h5 class="mb-1">' . $order->products[$i]['name'] . '<small> x ' . $order->products[$i]['qty'] . '</small></h5>';
+              if ( (isset($order->products[$i]['attributes'])) && (sizeof($order->products[$i]['attributes']) > 0) ) {
+                echo '<p class="w-100 mb-1">';
+                for ($j=0, $n2=sizeof($order->products[$i]['attributes']); $j<$n2; $j++) {
+                  echo '- ' . $order->products[$i]['attributes'][$j]['option'] . ': ' . $order->products[$i]['attributes'][$j]['value'] . '<br>';
+                }
+                echo '</p>';
+              }              
+            echo '</li>';
+          }
+          ?>
+        </ul>
+        <table class="table mb-0">
+          <?php
+          if (MODULE_ORDER_TOTAL_INSTALLED) {
+            echo $order_total_modules->output();
+          }
+          ?>
+        </table>
+      </div>      
+    </div>
+    <div class="col-sm-5">
+      <h5 class="mb-1"><?php echo ORDER_DETAILS; ?></h5>
+      <div class="border">        
+        <ul class="list-group list-group-flush">
+          <?php
+          if ($sendto != false) {
+            echo '<li class="list-group-item">';
+              echo '<i class="fas fa-shipping-fast fa-fw fa-3x float-right text-black-50"></i>';
+              echo '<h5 class="mb-0">' . HEADING_DELIVERY_ADDRESS . '<small><a class="font-weight-lighter ml-2" href="' . tep_href_link('checkout_shipping_address.php', '', 'SSL') . '">' . TEXT_EDIT . '</a></small></h5>';
+              echo '<p class="w-100 mb-1">' . tep_address_format($order->delivery['format_id'], $order->delivery, 1, ' ', '<br />') . '</p>';
+            echo '</li>';
+          }
+          echo '<li class="list-group-item">';
+            echo '<i class="fas fa-file-invoice-dollar fa-fw fa-3x float-right text-black-50"></i>';
+            echo '<h5 class="mb-0">' . HEADING_BILLING_ADDRESS . '<small><a class="font-weight-lighter ml-2" href="' . tep_href_link('checkout_payment_address.php', '', 'SSL') . '">' . TEXT_EDIT . '</a></small></h5>';
+            echo '<p class="w-100 mb-1">' . tep_address_format($order->billing['format_id'], $order->billing, 1, ' ', '<br />') . '</p>';
+          echo '</li>';
+          if ($order->info['shipping_method']) {
+            echo '<li class="list-group-item">';
+              echo '<h5 class="mb-1">' . HEADING_SHIPPING_METHOD . '<small><a class="font-weight-lighter ml-2" href="' . tep_href_link('checkout_shipping.php', '', 'SSL') . '">' . TEXT_EDIT . '</a></small></h5>';
+              echo '<p class="w-100 mb-1">' . $order->info['shipping_method'] . '</p>';
+            echo '</li>';
+          }
+          echo '<li class="list-group-item">';
+            echo '<h5 class="mb-1">' . HEADING_PAYMENT_METHOD . '<small><a class="font-weight-lighter ml-2" href="' . tep_href_link('checkout_payment.php', '', 'SSL') . '">' . TEXT_EDIT . '</a></small></h5>';
+            echo '<p class="w-100 mb-1">' . $order->info['payment_method'] . '</p>';
+          echo '</li>';
+          ?>
+        </ul>
+        
       </div>
     </div>
-    <div class="col-sm-4">
-      <?php
-      if ($order->info['shipping_method']) {
-        ?>
-        <div class="panel panel-info">
-          <div class="panel-heading"><?php echo '<strong>' . HEADING_SHIPPING_METHOD . '</strong>' . tep_draw_button(TEXT_EDIT, 'fa fa-edit', tep_href_link('checkout_shipping.php', '', 'SSL'), NULL, NULL, 'pull-right btn-info btn-xs' ); ?></div>
-          <div class="panel-body">
-            <?php echo $order->info['shipping_method']; ?>
-          </div>
-        </div>
-        <?php
-      }
-      ?>
-      <div class="panel panel-warning">
-        <div class="panel-heading"><?php echo '<strong>' . HEADING_PAYMENT_METHOD . '</strong>' . tep_draw_button(TEXT_EDIT, 'fa fa-edit', tep_href_link('checkout_payment.php', '', 'SSL'), NULL, NULL, 'pull-right btn-info btn-xs' ); ?></div>
-        <div class="panel-body">
-          <?php echo $order->info['payment_method']; ?>
-        </div>
-      </div>
-    </div>
-
-
   </div>
+  
+  <?php
+  if (tep_not_null($order->info['comments'])) {
+    ?>
+    <h5 class="mb-1"><?php echo HEADING_ORDER_COMMENTS . '<small><a class="font-weight-lighter ml-2" href="' . tep_href_link('checkout_payment.php', '', 'SSL') . '">' .TEXT_EDIT . '</a></small>'; ?></h5>
+    
+    <div class="border mb-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <?php 
+          echo '<i class="fas fa-comments fa-fw fa-3x float-right text-black-50"></i>';
+          echo nl2br(tep_output_string_protected($order->info['comments'])) . tep_draw_hidden_field('comments', $order->info['comments']);
+          ?>
+        </li>
+      </ul>
+    </div>
+   
+    <?php
+  }
 
-
-<?php
   if (is_array($payment_modules->modules)) {
     if ($confirmation = $payment_modules->confirmation()) {
 ?>
   <hr>
 
-  <h2><?php echo HEADING_PAYMENT_INFORMATION; ?></h2>
+  <h5 class="mb-1"><?php echo HEADING_PAYMENT_INFORMATION; ?></h5>
 
-  <div class="contentText row">
+  <div class="row">
 <?php
     if (tep_not_null($confirmation['title'])) {
-      echo '<div class="col-sm-6">';
-      echo '  <div class="alert alert-danger">';
-      echo $confirmation['title'];
-      echo '  </div>';
+      echo '<div class="col">';
+        echo '<div class="bg-light border p-3">';
+          echo $confirmation['title'];
+        echo '</div>';
       echo '</div>';
     }
-?>
-<?php
-      if (isset($confirmation['fields'])) {
-        echo '<div class="col-sm-6">';
-        echo '  <div class="alert alert-info">';
+    if (isset($confirmation['fields'])) {
+      echo '<div class="col">';
+        echo '<div class="alert alert-info" role="alert">';
         $fields = '';
         for ($i=0, $n=sizeof($confirmation['fields']); $i<$n; $i++) {
           $fields .= $confirmation['fields'][$i]['title'] . ' ' . $confirmation['fields'][$i]['field'] . '<br>';
         }
         if (strlen($fields) > 4) echo substr($fields,0,-4);
-        echo '  </div>';
         echo '</div>';
-      }
+      echo '</div>';
+    }
 ?>
   </div>
-  <div class="clearfix"></div>
+  <div class="w-100"></div>
 
 <?php
     }
   }
-
-  if (tep_not_null($order->info['comments'])) {
-?>
-  <hr>
-
-  <h2><?php echo '<strong>' . HEADING_ORDER_COMMENTS . '</strong>' . tep_draw_button(TEXT_EDIT, 'fa fa-edit', tep_href_link('checkout_payment.php', '', 'SSL'), NULL, NULL, 'pull-right btn-info btn-xs' ); ?></h2>
-
-  <blockquote>
-    <?php echo nl2br(tep_output_string_protected($order->info['comments'])) . tep_draw_hidden_field('comments', $order->info['comments']); ?>
-  </blockquote>
-
-<?php
-  }
-?>
-
-  <div class="buttonSet">
+  
+  echo $OSCOM_Hooks->call('siteWide', 'injectFormDisplay');
+  ?>
+  
+  <div class="buttonSet mt-3">
     <div class="text-right">
       <?php
       if (is_array($payment_modules->modules)) {
@@ -275,25 +242,10 @@
     </div>
   </div>
 
-  <div class="clearfix"></div>
-
-  <div class="contentText">
-    <div class="stepwizard">
-      <div class="stepwizard-row">
-        <div class="stepwizard-step">
-          <a href="<?php echo tep_href_link('checkout_shipping.php', '', 'SSL'); ?>"><button type="button" class="btn btn-default btn-circle">1</button></a>
-          <p><a href="<?php echo tep_href_link('checkout_shipping.php', '', 'SSL'); ?>"><?php echo CHECKOUT_BAR_DELIVERY; ?></a></p>
-        </div>
-        <div class="stepwizard-step">
-          <a href="<?php echo tep_href_link('checkout_payment.php', '', 'SSL'); ?>"><button type="button" class="btn btn-default btn-circle">2</button></a>
-          <p><a href="<?php echo tep_href_link('checkout_payment.php', '', 'SSL'); ?>"><?php echo CHECKOUT_BAR_PAYMENT; ?></a></p>
-        </div>
-        <div class="stepwizard-step">
-          <button type="button" class="btn btn-primary btn-circle">3</button>
-          <p><?php echo CHECKOUT_BAR_CONFIRMATION; ?></p>
-        </div>
-      </div>
-    </div>
+  <div class="progressBarHook">
+    <?php
+    echo $OSCOM_Hooks->call('progress', 'progressBar', $arr = array('style' => 'progress-bar progress-bar-striped progress-bar-animated bg-info', 'markers' => array('position' => 3, 'min' => 0, 'max' => 100, 'now' => 100)));
+    ?>  
   </div>
 
 </div>

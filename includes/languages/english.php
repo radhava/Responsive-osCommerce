@@ -56,8 +56,8 @@ define('HEADER_TITLE_TOP', '<i class="fas fa-home"></i><span class="sr-only"> Ho
 define('HEADER_TITLE_CATALOG', 'Catalog');
 
 // text for gender
-define('MALE', 'M<span class="hidden-xs">ale</span>');
-define('FEMALE', 'F<span class="hidden-xs">emale</span>');
+define('MALE', 'Male');
+define('FEMALE', 'Female');
 
 // checkout procedure text
 define('CHECKOUT_BAR_DELIVERY', 'Delivery Information');
@@ -69,9 +69,6 @@ define('PULL_DOWN_DEFAULT', 'Please Select');
 
 // javascript messages
 define('JS_ERROR', 'Errors have occured during the process of your form.\n\nPlease make the following corrections:\n\n');
-
-define('JS_REVIEW_TEXT', '* The \'Review Text\' must have at least ' . REVIEW_TEXT_MIN_LENGTH . ' characters.\n');
-define('JS_REVIEW_RATING', '* You must rate the product for your review.\n');
 
 define('JS_ERROR_NO_PAYMENT_MODULE_SELECTED', '* Please select a payment method for your order.\n');
 
@@ -141,7 +138,6 @@ define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'The Password Confirmation must 
 // constants for use in tep_prev_next_display function
 define('TEXT_RESULT_PAGE', 'Result Pages:');
 define('TEXT_DISPLAY_NUMBER_OF_PRODUCTS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> products)');
-define('TEXT_DISPLAY_NUMBER_OF_REVIEWS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> reviews)');
 
 define('PREVNEXT_TITLE_FIRST_PAGE', 'First Page');
 define('PREVNEXT_TITLE_PREVIOUS_PAGE', 'Previous Page');
@@ -165,10 +161,9 @@ define('IMAGE_BUTTON_CONTINUE', 'Continue');
 define('IMAGE_BUTTON_DELETE', 'Delete');
 define('IMAGE_BUTTON_LOGIN', 'Sign In');
 define('IMAGE_BUTTON_IN_CART', 'Add to Cart');
-define('IMAGE_BUTTON_REVIEWS', 'Reviews');
 define('IMAGE_BUTTON_SEARCH', 'Search');
 define('IMAGE_BUTTON_UPDATE', 'Update');
-define('IMAGE_BUTTON_WRITE_REVIEW', 'Write Review');
+define('IMAGE_BUTTON_UPDATE_PREFERENCES', 'Update Preferences');
 
 define('SMALL_IMAGE_BUTTON_DELETE', 'Delete');
 define('SMALL_IMAGE_BUTTON_EDIT', 'Edit');
@@ -181,8 +176,6 @@ define('TEXT_SORT_PRODUCTS', 'Sort products ');
 define('TEXT_DESCENDINGLY', 'descendingly');
 define('TEXT_ASCENDINGLY', 'ascendingly');
 define('TEXT_BY', ' by ');
-
-define('TEXT_NO_REVIEWS', 'There are currently no product reviews.');
 
 define('TEXT_UNKNOWN_TAX_RATE', 'Unknown tax rate');
 
@@ -199,13 +192,8 @@ define('TEXT_VIEW_GRID', ' Grid');
 define('TEXT_SEARCH_PLACEHOLDER','Search');
 
 // message for required inputs
-define('FORM_REQUIRED_INFORMATION', '<span class="fa fa-asterisk text-danger"></span> Required information');
-define('FORM_REQUIRED_INPUT', '<span class="form-control-feedback text-danger"><span class="fa fa-asterisk"></span></span>');
-
-// reviews
-define('REVIEWS_TEXT_RATED', 'Rated %s by <cite title="%s" itemprop="author">%s</cite>');
-define('REVIEWS_TEXT_AVERAGE', 'Average rating based on <span itemprop="ratingCount">%s</span> review(s) %s');
-define('REVIEWS_TEXT_TITLE', 'What our customers say...');
+define('FORM_REQUIRED_INFORMATION', '<i class="fas fa-asterisk text-danger"></i> Required information');
+define('FORM_REQUIRED_INPUT', '<span class="form-control-feedback text-danger"><i class="fas fa-asterisk"></i></span>');
 
 // grid/list
 define('TEXT_SORT_BY', 'Sort By ');
@@ -214,11 +202,12 @@ define('TABLE_HEADING_IMAGE', '');
 define('TABLE_HEADING_MODEL', 'Model');
 define('TABLE_HEADING_PRODUCTS', 'Product Name');
 define('TABLE_HEADING_MANUFACTURER', 'Manufacturer');
-define('TABLE_HEADING_QUANTITY', 'Quantity');
+define('TABLE_HEADING_QUANTITY', 'Stock');
 define('TABLE_HEADING_PRICE', 'Price');
 define('TABLE_HEADING_WEIGHT', 'Weight');
 define('TABLE_HEADING_BUY_NOW', 'Buy Now');
-define('TABLE_HEADING_LATEST_ADDED', 'Latest Products');
+define('TABLE_HEADING_LATEST_ADDED', 'Date Added');
+define('TABLE_HEADING_ORDERED', 'Most Popular');
 
 // product notifications
 define('PRODUCT_SUBSCRIBED', '%s has been added to your Notification List');
@@ -228,3 +217,25 @@ define('PRODUCT_REMOVED', '%s has been removed from your Cart');
 
 // bootstrap helper
 define('MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION', '');
+
+// noscript helper
+define('TEXT_NOSCRIPT', '<p><strong>JavaScript seems to be disabled in your browser.</strong></p><p>You must have JavaScript enabled in your browser to utilize the functionality of this website.<br><a class="alert-link" href="https://www.enable-javascript.com/" target="_blank" rel="nofollow">Click here for instructions on enabling javascript in your browser</a>.</p>');
+
+// sitewide is-product 
+define('IS_PRODUCT_SHOW_PRICE', '%s');
+define('IS_PRODUCT_SHOW_PRICE_SPECIAL', '<del>%s</del> <span class="text-danger">now %s</span>');
+define('IS_PRODUCT_BUTTON_BUY', '<i class="fas fa-shopping-cart"></i>');
+define('IS_PRODUCT_BUTTON_VIEW', '<i class="fas fa-eye"></i> View');
+
+// sitewide product listing
+define('LISTING_SORT_DOWN', '<i class="fas fa-level-down-alt text-primary"></i>');
+define('LISTING_SORT_UP', '<i class="fas fa-level-up-alt text-primary"></i>');
+define('LISTING_SORT_UNSELECTED', '<i class="fas fa-level-up-alt text-black-50"></i>');
+// for new style internal pages
+define('LINK_TEXT_EDIT', '<small><a class="%s" href="' . tep_href_link('%s', '', 'SSL') . '">Edit</a></small>');
+define('SHIPPING_FA_ICON', '<i class="fas fa-shipping-fast fa-fw fa-3x float-right text-black-50"></i>');
+define('PAYMENT_FA_ICON', '<i class="fas fa-file-invoice-dollar fa-fw fa-3x float-right text-black-50"></i>');
+
+define('ENTRY_COMMENTS', 'Anything we need to know?');
+define('ENTRY_COMMENTS_PLACEHOLDER', 'Comment here...');
+define('TABLE_HEADING_OR', '-or-');
